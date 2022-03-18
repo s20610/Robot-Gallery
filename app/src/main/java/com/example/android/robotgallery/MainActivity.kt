@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.marsphotos
+package com.example.android.robotgallery
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
  * overviewFragment.
  */
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

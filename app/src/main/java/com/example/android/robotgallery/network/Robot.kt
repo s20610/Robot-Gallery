@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.android.marsphotos.network
+package com.example.android.robotgallery.network
 
 import com.squareup.moshi.Json
 
-/**
- * This data class defines a Mars photo which includes an ID, and the image URL.
- * The property names of this data class are used by Moshi to match the names of values in JSON.
- */
-data class MarsPhoto(
-        val id: String,
+data class Robot(
+        @Json(name = "id")val id: String,
+        @Json(name = "first_name")val firstName: String,
+        @Json(name = "last_name")val lastName: String,
         // used to map img_src from the JSON to imgSrcUrl in our class
-        @Json(name = "img_src") val imgSrcUrl: String
+        @Json(name = "profile_pic") val imgSrcUrl: String,
 )

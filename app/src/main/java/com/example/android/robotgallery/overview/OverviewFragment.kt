@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.marsphotos.overview
+package com.example.android.robotgallery.overview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.android.marsphotos.databinding.FragmentOverviewBinding
+import com.example.android.robotgallery.databinding.FragmentOverviewBinding
 
 /**
  * This fragment shows the the status of the Mars photos web services transaction.
@@ -48,7 +48,7 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         // Sets the adapter of the photosGrid RecyclerView
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = RobotGalleryAdapter()
 
         return binding.root
     }

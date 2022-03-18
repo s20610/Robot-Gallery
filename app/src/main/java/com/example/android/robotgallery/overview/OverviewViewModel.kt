@@ -14,56 +14,46 @@
  * limitations under the License.
  */
 
-package com.example.android.marsphotos.overview
+package com.example.android.robotgallery.overview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.marsphotos.network.MarsApi
-import com.example.android.marsphotos.network.MarsPhoto
+import com.example.android.robotgallery.network.RobotApi
+import com.example.android.robotgallery.network.Robot
 import kotlinx.coroutines.launch
 
-enum class MarsApiStatus { LOADING, ERROR, DONE }
+enum class RobotApiStatus { LOADING, ERROR, DONE }
 
-/**
- * The [ViewModel] that is attached to the [OverviewFragment].
- */
 class OverviewViewModel : ViewModel() {
 
     // The internal MutableLiveData that stores the status of the most recent request
-    private val _status = MutableLiveData<MarsApiStatus>()
+    private val _status = MutableLiveData<RobotApiStatus>()
 
     // The external immutable LiveData for the request status
-    val status: LiveData<MarsApiStatus> = _status
+    val status: LiveData<RobotApiStatus> = _status
 
     // Internally, we use a MutableLiveData, because we will be updating the List of MarsPhoto
     // with new values
-    private val _photos = MutableLiveData<List<MarsPhoto>>()
+    private val _photos = MutableLiveData<List<Robot>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val photos: LiveData<List<MarsPhoto>> = _photos
+    val photos: LiveData<List<Robot>> = _photos
 
-    /**
-     * Call getMarsPhotos() on init so we can display status immediately.
-     */
     init {
-        getMarsPhotos()
+        getRobots()
     }
 
-    /**
-     * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [MarsPhoto] [List] [LiveData].
-     */
-    private fun getMarsPhotos() {
+    private fun getRobots() {
 
         viewModelScope.launch {
-            _status.value = MarsApiStatus.LOADING
+            _status.value = RobotApiStatus.LOADING
             try {
-                _photos.value = MarsApi.retrofitService.getPhotos()
-                _status.value = MarsApiStatus.DONE
+                _photos.value = RobotApi.retrofitService.getRobots()
+                _status.value = RobotApiStatus.DONE
             } catch (e: Exception) {
-                _status.value = MarsApiStatus.ERROR
+                _status.value = RobotApiStatus.ERROR
                 _photos.value = listOf()
             }
         }

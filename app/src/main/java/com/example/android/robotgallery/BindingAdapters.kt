@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.marsphotos
+package com.example.android.robotgallery
 
 import android.view.View
 import android.widget.ImageView
@@ -22,16 +22,16 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.android.marsphotos.network.MarsPhoto
-import com.example.android.marsphotos.overview.MarsApiStatus
-import com.example.android.marsphotos.overview.PhotoGridAdapter
+import com.example.android.robotgallery.network.Robot
+import com.example.android.robotgallery.overview.RobotApiStatus
+import com.example.android.robotgallery.overview.RobotGalleryAdapter
 
 /**
  * Updates the data shown in the [RecyclerView].
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsPhoto>?) {
-    val adapter = recyclerView.adapter as PhotoGridAdapter
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Robot>?) {
+    val adapter = recyclerView.adapter as RobotGalleryAdapter
     adapter.submitList(data)
 }
 
@@ -50,23 +50,23 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 /**
- * This binding adapter displays the [MarsApiStatus] of the network request in an image view.  When
+ * This binding adapter displays the [RobotApiStatus] of the network request in an image view.  When
  * the request is loading, it displays a loading_animation.  If the request has an error, it
  * displays a broken image to reflect the connection error.  When the request is finished, it
  * hides the image view.
  */
-@BindingAdapter("marsApiStatus")
-fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
+@BindingAdapter("robotApiStatus")
+fun bindStatus(statusImageView: ImageView, status: RobotApiStatus?) {
     when (status) {
-        MarsApiStatus.LOADING -> {
+        RobotApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        MarsApiStatus.ERROR -> {
+        RobotApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
-        MarsApiStatus.DONE -> {
+        RobotApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
     }

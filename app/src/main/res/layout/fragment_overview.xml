@@ -23,29 +23,28 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.android.marsphotos.overview.OverviewViewModel" />
+            type="com.example.android.robotgallery.overview.OverviewViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.android.marsphotos.overview.OverViewFragment">
+        tools:context="com.example.android.robotgallery.overview.OverViewFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_grid"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:padding="6dp"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:padding="8dp"
+            android:clipToPadding="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:listData="@{viewModel.photos}"
-            app:spanCount="2"
-            tools:itemCount="16"
-            tools:listitem="@layout/grid_view_item" />
+            tools:itemCount="4"
+            tools:listitem="@layout/linear_view_item" />
 
         <ImageView
             android:id="@+id/status_image"
@@ -55,7 +54,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:marsApiStatus="@{viewModel.status}" />
+            app:robotApiStatus="@{viewModel.status}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

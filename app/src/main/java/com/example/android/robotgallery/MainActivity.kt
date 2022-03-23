@@ -16,8 +16,13 @@
 
 package com.example.android.robotgallery
 
+import android.content.ClipData
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 
 /**
  * MainActivity sets the content view activity_main, a fragment container that contains
@@ -29,4 +34,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.navigation_drawer, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.robot_menu -> {
+                Toast.makeText(this,"You clicked robot!",Toast.LENGTH_LONG).show()
+                item.setChecked(true)
+                setContentView(R.layout.activity_main)
+                this.recreate()
+            }
+            R.id.worker_menu -> {
+                Toast.makeText(this,"You clicked worker!",Toast.LENGTH_LONG).show()
+                item.setChecked(true)
+                setContentView(R.layout.worker_main)
+            }
+        }
+        return true
+    }
 }
+
+
